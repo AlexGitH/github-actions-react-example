@@ -1,0 +1,34 @@
+name: Deploy React App (chain)
+on: push
+jobs:
+  test-my-staff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code from repository
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm ci
+      - name: Test App
+        run: npm run test
+  lint-my-code:
+    runs-on: ubuntu-latest
+    needs: test-my-staff
+    steps:
+      - name: Get code from repository
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm ci
+      - name: Lint App
+        run: npm run lint
+  build-my-app:
+    needs: lint-my-code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code from repository
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm ci
+      - name: Build App
+        run: npm run build
+      - name: Deploy
+        run: echo Deploying...
