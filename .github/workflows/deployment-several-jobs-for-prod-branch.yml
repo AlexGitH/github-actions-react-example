@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - "prod"
+    paths-ignore:
+      - 'workflows-examples/*'
 jobs:
   test-my-staff:
     runs-on: ubuntu-latest
