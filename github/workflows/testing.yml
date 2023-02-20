@@ -1,0 +1,12 @@
+name: Test React App
+on: push
+jobs:
+  test-my-staff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code from repository
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm ci
+      - name: Test App
+        run: npm run test
